@@ -12,6 +12,7 @@ public class RegisterAccountPage extends BasePage {
     private By confirmField = By.xpath("//input[@name='confirm']");
     private By checkbox = By.xpath("//input[@type='checkbox']");
     private By continueButton = By.xpath("//input[@type='submit']");
+    private By errorMessage = By.xpath("//div[@class='text-danger']");
 
 
     public RegisterAccountPage setFirstNameField(String userName) {
@@ -51,11 +52,16 @@ public class RegisterAccountPage extends BasePage {
 
     public BasePage clickContinueButton() {
         find(continueButton).click();
-        if(getDriver().getCurrentUrl().contains("register")){
+        if (getDriver().getCurrentUrl().contains("register")) {
             return new RegisterAccountPage();
-        }else{
-        return new CongrPage();
+        } else {
+            return new CongrPage();
+        }
     }
 
+    public String appearErrorMessage() {
+        String actResAppearErrorMessage = find(errorMessage).getText();
+        return actResAppearErrorMessage;
+    }
 }
-}
+

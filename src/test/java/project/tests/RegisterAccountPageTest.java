@@ -1,12 +1,10 @@
 package project.tests;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import project.pages.CongrPage;
 import project.pages.MainPage;
-import project.pages.RegisterAccountPage;
+import project.utils.RandomEmail;
 
 public class RegisterAccountPageTest extends BaseTest {
 
@@ -16,7 +14,7 @@ public class RegisterAccountPageTest extends BaseTest {
   public void registrationWithValidCredentials() {
     String userName = "Ivan";
     String lastName = "Ivanov";
-    String email = utils.RandomEmail.generateString();
+    String email = RandomEmail.generateString();
     String telephone = "+38651234879";
     String password = "1qazxsw2";
     String confirm = "1qazxsw2";
@@ -24,9 +22,9 @@ public class RegisterAccountPageTest extends BaseTest {
 
 
     mainPage = new MainPage();
-    mainPage.openMainPage();
     //CongrPage actualResualt = (CongrPage) mainPage
-    MainPage actualMessage = (MainPage) mainPage.clickIconMyAccount()
+      CongrPage actualMessage = (CongrPage)mainPage.openMainPage().getTopMenu()
+            .clickIconMyAccount()
             .clickOnTheButtonRegister()
             .setFirstNameField(userName)
             .setLastNameField(lastName)
@@ -36,8 +34,7 @@ public class RegisterAccountPageTest extends BaseTest {
             .setConfirm(confirm)
             .clickCheckbox()
             .clickContinueButton();
-
-   Assertions.assertThat(actualMessage).isEqualTo(messageText);
+   Assertions.assertThat(actualMessage.getCongMessage()).isEqualTo(messageText);
     //Assert.assertEquals(messageText, actualResualt.getCongMessage());
 
 
