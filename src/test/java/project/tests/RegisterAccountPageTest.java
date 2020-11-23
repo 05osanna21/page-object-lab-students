@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
 import project.pages.CongrPage;
 import project.pages.MainPage;
 import project.pages.RegisterAccountPage;
-import project.utils.RandomEmail;
 
 public class RegisterAccountPageTest extends BaseTest {
 
@@ -17,7 +16,7 @@ public class RegisterAccountPageTest extends BaseTest {
   public void registrationWithValidCredentials() {
     String userName = "Ivan";
     String lastName = "Ivanov";
-    String email = RandomEmail.generateString();
+    String email = utils.RandomEmail.generateString();
     String telephone = "+38651234879";
     String password = "1qazxsw2";
     String confirm = "1qazxsw2";
@@ -26,20 +25,21 @@ public class RegisterAccountPageTest extends BaseTest {
 
     mainPage = new MainPage();
     mainPage.openMainPage();
-   String actualMessage   = mainPage.clickIconMyAccount()
-           .clickOnTheButtonRegister()
-           .setFirstNameField(userName)
-           .setLastNameField(lastName)
-           .setEmail(email)
-           .setTelephone(telephone)
-           .setPassword(password)
-           .setConfirm(confirm)
-           .clickCheckbox()
-           .clickContinueButton()
-           .getCongMessage();
+    //CongrPage actualResualt = (CongrPage) mainPage
+    MainPage actualMessage = (MainPage) mainPage.clickIconMyAccount()
+            .clickOnTheButtonRegister()
+            .setFirstNameField(userName)
+            .setLastNameField(lastName)
+            .setEmail(email)
+            .setTelephone(telephone)
+            .setPassword(password)
+            .setConfirm(confirm)
+            .clickCheckbox()
+            .clickContinueButton();
 
-    Assertions.assertThat(actualMessage).isEqualTo(messageText);
+   Assertions.assertThat(actualMessage).isEqualTo(messageText);
+    //Assert.assertEquals(messageText, actualResualt.getCongMessage());
 
+
+  }
 }
-}
-

@@ -23,7 +23,7 @@ public class BaseTest {
   @After
   public void closeDriver() {
     //get driver from base page and quite it
-    BasePage.getDriver().quit();
+    //BasePage.getDriver().quit();
   }
 
 

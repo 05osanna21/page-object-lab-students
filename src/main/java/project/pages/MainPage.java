@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 
 public class MainPage extends BasePage {
 
-    By myAccount = By.xpath("//span[@ class='hidden-xs hidden-sm hidden-md' and text()='My Account']");
-    By buttonRegister = By.xpath("//a[text()='Register']");
+  private  By myAccount = By.xpath("//span[@ class='hidden-xs hidden-sm hidden-md' and text()='My Account']");
+  private  By buttonRegister = By.xpath("//a[text()='Register']");
 
     public MainPage openMainPage() {
         getDriver().get("https://demo.opencart.com/");

@@ -49,9 +49,13 @@ public class RegisterAccountPage extends BasePage {
         return this;
     }
 
-    public CongrPage clickContinueButton() {
+    public BasePage clickContinueButton() {
         find(continueButton).click();
+        if(getDriver().getCurrentUrl().contains("register")){
+            return new RegisterAccountPage();
+        }else{
         return new CongrPage();
     }
 
+}
 }
